@@ -1,0 +1,28 @@
+<%- include("../partials/header", { title: "Login" }) %>
+
+<div class="card" style="max-width:520px;margin:18px auto;">
+  <h2>Login</h2>
+
+  <% if (error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+
+  <form action="/auth/login" method="POST" class="form">
+    <label>
+      Email
+      <input type="email" name="email" required value="<%= values.email %>" placeholder="you@example.com" />
+    </label>
+
+    <label>
+      Password
+      <input type="password" name="password" required minlength="6" placeholder="••••••" />
+    </label>
+
+    <button class="btn" type="submit">Login</button>
+    <p class="muted" style="margin:6px 0 0;">
+      No account? <a href="/auth/register" style="text-decoration:underline;">Register</a>
+    </p>
+  </form>
+</div>
+
+<%- include("../partials/footer") %>

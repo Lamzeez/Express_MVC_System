@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= title %> - NoteCore</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">
+        <span class="logo">🗒️</span>
+        <div>
+          <div class="name">NoteCore</div>
+          <div class="tagline">Simple MVC Notepad</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <% if (currentUser) { %>
+          <span class="muted">Hi, <%= currentUser.name %></span>
+          <a href="/notes">Notes</a>
+          <form action="/auth/logout" method="POST" style="display:inline;">
+            <button class="btn btn-ghost" type="submit">Logout</button>
+          </form>
+        <% } else { %>
+          <a href="/auth/login">Login</a>
+          <a href="/auth/register">Register</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">

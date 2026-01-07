@@ -1,0 +1,23 @@
+{
+  "name": "notecore",
+  "version": "2.0.0",
+  "description": "NoteCore - Express MVC Notepad with Auth + Sessions + MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-mysql-session": "^2.1.8",
+    "express-session": "^1.17.3",
+    "method-override": "^3.0.0",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

@@ -1,0 +1,26 @@
+<%- include("../partials/header", { title: "View Note" }) %>
+
+<div class="card">
+  <div class="row">
+    <div>
+      <h2><%= note.title %></h2>
+      <div class="muted">
+        Created: <%= new Date(note.createdAt).toLocaleString() %> •
+        Updated: <%= new Date(note.updatedAt).toLocaleString() %>
+      </div>
+    </div>
+
+    <div class="row-actions">
+      <a class="btn btn-ghost" href="/notes">Back</a>
+      <a class="btn" href="/notes/<%= note.id %>/edit">Edit</a>
+      <form action="/notes/<%= note.id %>?_method=DELETE" method="POST"
+            onsubmit="return confirm('Delete this note?');">
+        <button class="btn btn-danger" type="submit">Delete</button>
+      </form>
+    </div>
+  </div>
+
+  <pre class="note-body"><%= note.content %></pre>
+</div>
+
+<%- include("../partials/footer") %>

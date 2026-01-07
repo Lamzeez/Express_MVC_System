@@ -1,0 +1,28 @@
+<%- include("../partials/header", { title: "Edit Note" }) %>
+
+<div class="card">
+  <div class="row">
+    <h2>Edit note</h2>
+    <a class="btn btn-ghost" href="/notes/<%= note.id %>">Cancel</a>
+  </div>
+
+  <% if (typeof error !== "undefined" && error) { %>
+    <div class="alert"><%= error %></div>
+  <% } %>
+
+  <form action="/notes/<%= note.id %>?_method=PUT" method="POST" class="form">
+    <label>
+      Title (optional)
+      <input type="text" name="title" maxlength="80" value="<%= note.title %>" />
+    </label>
+
+    <label>
+      Content *
+      <textarea name="content" rows="10" maxlength="5000"><%= note.content %></textarea>
+    </label>
+
+    <button type="submit" class="btn">Update Note</button>
+  </form>
+</div>
+
+<%- include("../partials/footer") %>

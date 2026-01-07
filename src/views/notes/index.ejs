@@ -1,0 +1,61 @@
+<%- include("../partials/header", { title: "Notes" }) %>
+
+<section class="grid">
+  <div class="card">
+    <h2>Create a note</h2>
+
+    <% if (typeof error !== "undefined" && error) { %>
+      <div class="alert"><%= error %></div>
+    <% } %>
+
+    <form action="/notes" method="POST" class="form">
+      <label>
+        Title (optional)
+        <input type="text" name="title" maxlength="80" placeholder="e.g., Shopping list" />
+      </label>
+
+      <label>
+        Content *
+        <textarea name="content" rows="7" maxlength="5000" placeholder="Write something..."></textarea>
+      </label>
+
+      <button type="submit" class="btn">Save Note</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Your notes (<%= notes.length %>)</h2>
+
+    <% if (notes.length === 0) { %>
+      <p class="muted">No notes yet. Create your first note on the left.</p>
+    <% } else { %>
+      <div class="list">
+        <% notes.forEach(note => { %>
+          <div class="item">
+            <div class="item-main">
+              <div class="item-title"><%= note.title %></div>
+              <div class="item-meta">
+                Updated: <%= new Date(note.updatedAt).toLocaleString() %>
+              </div>
+              <div class="item-preview">
+                <%= (note.content.length > 120) ? (note.content.slice(0,120) + "…") : note.content %>
+              </div>
+            </div>
+
+            <div class="item-actions">
+              <a class="btn btn-ghost" href="/notes/<%= note.id %>">Open</a>
+              <a class="btn btn-ghost" href="/notes/<%= note.id %>/edit">Edit</a>
+
+              <form action="/notes/<%= note.id %>?_method=DELETE" method="POST"
+                    onsubmit="return confirm('Delete this note?');">
+                <button class="btn btn-danger" type="submit">Delete</button>
+              </form>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include("../partials/footer") %>
